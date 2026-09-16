@@ -1,0 +1,1821 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>GreenBite | Small Greens. Big Nutrition.</title>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: "#003629",
+            primaryLight: "#1b4d3e",
+            cream: "#fbf9f5",
+            soft: "#f5f3ef",
+            greenSoft: "#dde6d3",
+            text: "#1b1c1a",
+            muted: "#404945"
+          },
+          fontFamily: {
+            jakarta: ["Plus Jakarta Sans", "sans-serif"]
+          }
+        }
+      }
+    };
+  </script>
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap"
+    rel="stylesheet"
+  />
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0"
+    rel="stylesheet"
+  />
+
+  <style>
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      background: #fbf9f5;
+      color: #1b1c1a;
+      font-family: "Plus Jakarta Sans", sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    .page {
+      display: none;
+    }
+
+    .page.active {
+      display: block;
+    }
+
+    .material-symbols-outlined {
+      font-size: 22px;
+      vertical-align: middle;
+    }
+
+    .product-image {
+      background-size: cover;
+      background-position: center;
+    }
+
+    .hero-image {
+      background-image:
+        linear-gradient(
+          90deg,
+          rgba(251,249,245,0.98) 0%,
+          rgba(251,249,245,0.88) 35%,
+          rgba(251,249,245,0.25) 75%,
+          rgba(251,249,245,0.05) 100%
+        ),
+        url("https://lh3.googleusercontent.com/aida-public/AB6AXuAR32WIe1EC-SiUvLcP8V3hojf9WMVqByGA4HH4pqRMPG5i5AVUbS21i8KCM8zRXC0aZKlMSVh-dqkHowI-Ldj-_WKk2oThVUynutJNfj6wVJmY8XEOPRj-fQ4NdFbk5ZCCkIHJST1a23YVCXH-gFJ34H3A84ZC7NG3yTqJqSANvSJYn1LCpTSLMx-fx2FNjsnEO0Vc-5Itm9ZfkCaOilEWBmDT40j_lthu-Mr2CfZQyp2i48sHrvl-");
+      background-size: cover;
+      background-position: center;
+    }
+
+    .hide-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+
+    .hide-scrollbar {
+      scrollbar-width: none;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ================= HEADER ================= -->
+
+  <header class="fixed top-0 left-0 w-full z-50 bg-[#fbf9f5]/90 backdrop-blur-xl shadow-sm">
+    <div class="max-w-7xl mx-auto h-20 px-6 flex items-center justify-between">
+
+      <button onclick="showPage('home')" class="flex items-center gap-3">
+        <div class="w-10 h-10 rounded-full bg-[#003629] text-white flex items-center justify-center">
+          <span class="material-symbols-outlined">eco</span>
+        </div>
+        <span class="text-xl font-bold text-[#003629]">GreenBite</span>
+      </button>
+
+      <nav class="hidden lg:flex items-center gap-2">
+        <button data-nav="home" onclick="showPage('home')" class="nav-btn px-4 py-2 rounded-full">
+          Home
+        </button>
+
+        <button data-nav="shop" onclick="showPage('shop')" class="nav-btn px-4 py-2 rounded-full">
+          Shop
+        </button>
+
+        <button data-nav="why" onclick="showPage('why')" class="nav-btn px-4 py-2 rounded-full">
+          Why Microgreens
+        </button>
+
+        <button data-nav="subscriptions" onclick="showPage('subscriptions')" class="nav-btn px-4 py-2 rounded-full">
+          Subscriptions
+        </button>
+
+        <button data-nav="about" onclick="showPage('about')" class="nav-btn px-4 py-2 rounded-full">
+          About Us
+        </button>
+
+        <button data-nav="contact" onclick="showPage('contact')" class="nav-btn px-4 py-2 rounded-full">
+          Contact
+        </button>
+      </nav>
+
+      <div class="flex items-center gap-4">
+
+        <button class="hidden sm:block text-[#404945]">
+          <span class="material-symbols-outlined">search</span>
+        </button>
+
+        <button onclick="showPage('cart')" class="relative text-[#404945]">
+          <span class="material-symbols-outlined">shopping_bag</span>
+          <span
+            id="cartBadge"
+            class="absolute -top-2 -right-2 w-5 h-5 text-xs rounded-full bg-[#003629] text-white flex items-center justify-center"
+          >
+            0
+          </span>
+        </button>
+
+      </div>
+    </div>
+  </header>
+
+
+  <!-- ================= HOME ================= -->
+
+  <main class="pt-20">
+
+    <section id="page-home" class="page active">
+
+      <div class="hero-image min-h-[720px] flex items-center">
+        <div class="max-w-7xl mx-auto w-full px-6 py-24">
+
+          <div class="max-w-2xl">
+
+            <div class="inline-flex items-center gap-2 bg-[#dde6d3] text-[#003629] px-4 py-2 rounded-full text-sm font-medium mb-6">
+              <span class="material-symbols-outlined text-base">eco</span>
+              Harvested Fresh Every Day
+            </div>
+
+            <h1 class="text-5xl md:text-6xl font-bold leading-tight text-[#003629]">
+              Pure Vitality,
+              <br />
+              Grown for Your Table.
+            </h1>
+
+            <p class="mt-6 text-lg text-[#404945] max-w-xl leading-relaxed">
+              Fresh, nutrient-rich microgreens harvested with care and delivered
+              straight to your doorstep.
+            </p>
+
+            <div class="flex flex-wrap gap-4 mt-8">
+
+              <button
+                onclick="showPage('shop')"
+                class="bg-[#003629] hover:bg-[#1b4d3e] text-white px-8 py-4 rounded-full font-semibold transition"
+              >
+                Explore Shop
+              </button>
+
+              <button
+                onclick="showPage('why')"
+                class="bg-white/80 hover:bg-white text-[#003629] px-8 py-4 rounded-full font-semibold transition"
+              >
+                Why Microgreens
+              </button>
+
+            </div>
+
+            <div class="grid grid-cols-3 gap-6 mt-12 pt-8 border-t border-[#707974]/30">
+
+              <div>
+                <div class="text-3xl font-bold text-[#003629]">40x</div>
+                <div class="text-sm text-[#404945] mt-1">
+                  Nutrient Rich
+                </div>
+              </div>
+
+              <div>
+                <div class="text-3xl font-bold text-[#003629]">0%</div>
+                <div class="text-sm text-[#404945] mt-1">
+                  Harmful Additives
+                </div>
+              </div>
+
+              <div>
+                <div class="text-3xl font-bold text-[#003629]">100%</div>
+                <div class="text-sm text-[#404945] mt-1">
+                  Fresh
+                </div>
+              </div>
+
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+
+      <!-- FEATURED PRODUCTS -->
+
+      <section class="max-w-7xl mx-auto px-6 py-20">
+
+        <div class="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-6 mb-10">
+
+          <div>
+            <span class="text-sm font-bold uppercase tracking-wider text-[#003629]">
+              Handcrafted Selection
+            </span>
+
+            <h2 class="text-4xl font-bold mt-2">
+              Featured Microgreens
+            </h2>
+          </div>
+
+          <button
+            onclick="showPage('shop')"
+            class="text-[#003629] font-semibold flex items-center gap-2"
+          >
+            View All
+            <span class="material-symbols-outlined">arrow_forward</span>
+          </button>
+
+        </div>
+
+
+        <div class="grid md:grid-cols-3 gap-6">
+
+          <!-- BROCCOLI -->
+
+          <article
+            class="bg-[#f5f3ef] rounded-2xl p-4 hover:shadow-lg transition cursor-pointer"
+            onclick="showPage('product')"
+          >
+
+            <div
+              class="product-image h-64 rounded-xl mb-5"
+              style="background-image:url('https://lh3.googleusercontent.com/aida-public/AB6AXuBx_bgysXDVT5RQjaG5W4e_GD2V6E_D1wFC4keRrtpt7CHup6yB1_4K4EM5MZtZDk6i98ip4MDjB_5UMHm5boT0zymNIRDB_2mpP2MUwf55I9782gM4lN-FYxxApky4u9IcWVOlCTZ4ZRz1zdWjGNtBjoGvDcNorKJgYo_3hoar5Pf-u4gqyIoNR0JqdJlD5-bq669mfo-vsKpQwqb0c0hGPOwYzZnydqUMc-NiT-ippZQ-yj-1n2Nz')"
+            ></div>
+
+            <div class="flex justify-between items-start gap-4">
+              <div>
+                <h3 class="text-xl font-bold">Organic Broccoli</h3>
+                <p class="text-sm text-[#404945] mt-2">
+                  Mild, earthy flavor packed with nutrients.
+                </p>
+              </div>
+
+              <span class="font-bold text-[#003629]">
+                ₹99
+              </span>
+            </div>
+
+            <button
+              onclick="event.stopPropagation(); addToCart('Organic Broccoli',99)"
+              class="mt-5 w-full bg-[#003629] text-white py-3 rounded-full font-semibold"
+            >
+              Add to Cart
+            </button>
+
+          </article>
+
+
+          <!-- RADISH -->
+
+          <article class="bg-[#f5f3ef] rounded-2xl p-4 hover:shadow-lg transition">
+
+            <div
+              class="product-image h-64 rounded-xl mb-5"
+              style="background-image:url('https://lh3.googleusercontent.com/aida-public/AB6AXuD9WL7LjHXjjgR1HgTIZP9sXIP25u8gNCvg0ElTqzZQ1JQoo0ftsny0mTDiLrcGHLrVHorEz8QIb64b7iCQfCl0cPAioANbWmhin6_BQv_f6YFkOfDghV2mDvJLlX4XEE-EPJjYMobuC3H3nVdY3-dqxLf6xAioIlnCl0rF6WprWw3XBK4-q8tPwzqZpHgE-FrKwuhYxgMqBWZDytdl1ZjXAyVdXwfO4zhakeZtYeQ9WHzdnHk7Dmex')"
+            ></div>
+
+            <div class="flex justify-between items-start gap-4">
+              <div>
+                <h3 class="text-xl font-bold">Spicy Radish</h3>
+                <p class="text-sm text-[#404945] mt-2">
+                  Bold, peppery flavor with beautiful stems.
+                </p>
+              </div>
+
+              <span class="font-bold text-[#003629]">
+                ₹89
+              </span>
+            </div>
+
+            <button
+              onclick="addToCart('Spicy Radish',89)"
+              class="mt-5 w-full bg-[#003629] text-white py-3 rounded-full font-semibold"
+            >
+              Add to Cart
+            </button>
+
+          </article>
+
+
+          <!-- MIXED -->
+
+          <article class="bg-[#f5f3ef] rounded-2xl p-4 hover:shadow-lg transition">
+
+            <div
+              class="product-image h-64 rounded-xl mb-5"
+              style="background-image:url('https://lh3.googleusercontent.com/aida-public/AB6AXuBjCM4CSuwRmc65Ji7Rb5SkqJ7vBCs117k-gWjvI7uVOjqapM1mJTzAdbw7m0RMPbGCQxv9ZaJACZ9M9DfI_UtOnooBc_hgSC0v4Mg1Z7TvC_Ti2rVOhbFsQsWISIxnGwAXGNZ0W-cUTuODk8yIkCPHhcsNzBJ5efNuwxeIh6ogm6jC4TLxbKu2GlSNvA3Kq2f9mAn1Oz0JrphY5aJoEYMltMu9A2gBtyhWypUGy5P7EuT1tbVk7IJK')"
+            ></div>
+
+            <div class="flex justify-between items-start gap-4">
+              <div>
+                <h3 class="text-xl font-bold">Chef's Salad Mix</h3>
+                <p class="text-sm text-[#404945] mt-2">
+                  A balanced blend for fresh salads.
+                </p>
+              </div>
+
+              <span class="font-bold text-[#003629]">
+                ₹119
+              </span>
+            </div>
+
+            <button
+              onclick="addToCart('Chef Salad Mix',119)"
+              class="mt-5 w-full bg-[#003629] text-white py-3 rounded-full font-semibold"
+            >
+              Add to Cart
+            </button>
+
+          </article>
+
+        </div>
+      </section>
+
+    </section>
+
+
+    <!-- ================= SHOP ================= -->
+
+    <section id="page-shop" class="page">
+
+      <div class="bg-[#f5f3ef] py-20">
+        <div class="max-w-7xl mx-auto px-6">
+          <span class="text-sm font-bold uppercase tracking-wider text-[#003629]">
+            Fresh Collection
+          </span>
+
+          <h1 class="text-5xl font-bold text-[#003629] mt-2">
+            Shop Fresh Microgreens
+          </h1>
+
+          <p class="text-lg text-[#404945] max-w-2xl mt-5">
+            Choose from our range of fresh, nutritious and carefully grown microgreens.
+          </p>
+        </div>
+      </div>
+
+      <div class="max-w-7xl mx-auto px-6 py-16">
+
+        <div class="flex flex-wrap gap-3 mb-10">
+
+          <button class="px-5 py-2 rounded-full bg-[#003629] text-white">
+            All
+          </button>
+
+          <button class="px-5 py-2 rounded-full bg-[#f5f3ef]">
+            Broccoli
+          </button>
+
+          <button class="px-5 py-2 rounded-full bg-[#f5f3ef]">
+            Radish
+          </button>
+
+          <button class="px-5 py-2 rounded-full bg-[#f5f3ef]">
+            Sunflower
+          </button>
+
+          <button class="px-5 py-2 rounded-full bg-[#f5f3ef]">
+            Pea Shoots
+          </button>
+
+          <button class="px-5 py-2 rounded-full bg-[#f5f3ef]">
+            Mixed Greens
+          </button>
+
+        </div>
+
+
+        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+
+          <!-- BROCCOLI -->
+
+          <div class="bg-[#f5f3ef] p-4 rounded-2xl">
+
+            <div
+              class="product-image h-64 rounded-xl"
+              style="background-image:url('https://lh3.googleusercontent.com/aida-public/AB6AXuCfESastqx9IvJFJu7YbwbNJFxAwBH1KjOLrF4j95Stup6PQ_O3QonsUudo8yNSi4m6XnEQtnmpruW-JMcBPYe6Wpfpxvr3GEbC4hHoGugM3cKyQKH8fgHv1T_Jt_AQDl4xLsXP-vga0q3xA0VE130HFynJwQlTCzpm3MqOkzNRnezPo99I5zjRJ8KW7b8LlqujphsFXCS-XGmJGx6qGfabLrMpmH46bXRaFemm3aUitrbc82ARKjKg')"
+            ></div>
+
+            <div class="flex justify-between mt-5">
+              <h3 class="text-xl font-bold">Broccoli Microgreens</h3>
+              <span class="font-bold text-[#003629]">₹99</span>
+            </div>
+
+            <p class="text-sm text-[#404945] mt-2">
+              50g fresh broccoli microgreens.
+            </p>
+
+            <div class="flex gap-3 mt-5">
+
+              <button
+                onclick="showPage('product')"
+                class="flex-1 border border-[#003629] text-[#003629] py-3 rounded-full font-semibold"
+              >
+                Details
+              </button>
+
+              <button
+                onclick="addToCart('Broccoli Microgreens',99)"
+                class="flex-1 bg-[#003629] text-white py-3 rounded-full font-semibold"
+              >
+                Add
+              </button>
+
+            </div>
+          </div>
+
+
+          <!-- RADISH -->
+
+          <div class="bg-[#f5f3ef] p-4 rounded-2xl">
+
+            <div
+              class="product-image h-64 rounded-xl"
+              style="background-image:url('https://lh3.googleusercontent.com/aida-public/AB6AXuA3AWNKLffvs6O0FXtCGN1QVVSmu1dkuBxoIEjd3prAbNBiVF75B1gY7tHFPY2s1ZwIUzI1RGaFXeZuzNliPRbbvguzZw6lDqFPqVwbKmWWMLMlQPvlT_4ngZ4Jyt7S8YpnUIUlP3affCTLHEQKlEmdpee7tcofvCYXKweyg-MGaH2MFAKfH45EzNMk-oUl6dlpR1NEMJidWA42_vk9lmOTk21MMiBvptGoyXMYTqHZtYlNK0upN083')"
+            ></div>
+
+            <div class="flex justify-between mt-5">
+              <h3 class="text-xl font-bold">Radish Microgreens</h3>
+              <span class="font-bold text-[#003629]">₹89</span>
+            </div>
+
+            <p class="text-sm text-[#404945] mt-2">
+              50g fresh radish microgreens.
+            </p>
+
+            <button
+              onclick="addToCart('Radish Microgreens',89)"
+              class="w-full mt-5 bg-[#003629] text-white py-3 rounded-full font-semibold"
+            >
+              Add to Cart
+            </button>
+
+          </div>
+
+
+          <!-- SUNFLOWER -->
+
+          <div class="bg-[#f5f3ef] p-4 rounded-2xl">
+
+            <div
+              class="product-image h-64 rounded-xl"
+              style="background-image:url('https://lh3.googleusercontent.com/aida-public/AB6AXuBLeRv_KNWMPMqXJ5NLL_aKToNw8M3iFkaLQpZc2A4YcLYLnGnTJe6q3nwaBbzXYZv7uSTMdaXOU4NqhbPPKVlqRBAh3Dlabhj76Qkc4ZJUrtE20FxFFK0paO_yDi6OZ66KR_POuCJbdbAWLFe2BpvdYnYK_9tYtLjITsVkEFWnQRsykFMB1sqmw5h0wmcUW8fBZccCrUJJndJiyDf7IXApAQpCgRbqG6SEOosI7sGiovOFAN-16x7Q')"
+            ></div>
+
+            <div class="flex justify-between mt-5">
+              <h3 class="text-xl font-bold">Sunflower Microgreens</h3>
+              <span class="font-bold text-[#003629]">₹109</span>
+            </div>
+
+            <p class="text-sm text-[#404945] mt-2">
+              Crunchy, nutty and naturally sweet.
+            </p>
+
+            <button
+              onclick="addToCart('Sunflower Microgreens',109)"
+              class="w-full mt-5 bg-[#003629] text-white py-3 rounded-full font-semibold"
+            >
+              Add to Cart
+            </button>
+
+          </div>
+
+
+          <!-- PEA SHOOTS -->
+
+          <div class="bg-[#f5f3ef] p-4 rounded-2xl">
+
+            <div
+              class="product-image h-64 rounded-xl"
+              style="background-image:url('https://lh3.googleusercontent.com/aida-public/AB6AXuCSdfQDzeutyr-M5dRm4YBNlMUaR-gvlFIWIGLj3AtADdDcu_WI1wi2Yi2qZ7WJRhVShLPzY6kOrZia2KNY2yQQjrOmEvaBClcyYuISInQqozEHXLfLayO40HVgZkwPbHDVqWIUmZNtiA3NHcN5fVLJqa8rk5c2u6FussYOjmQ0o9BuV73Ss1Nj16mNT828Ia7RCtczMGGYjR_lMUa2JsaMAJ4RVXIwfLUl5N7IXhrjE_l2_5wWb3gv')"
+            ></div>
+
+            <div class="flex justify-between mt-5">
+              <h3 class="text-xl font-bold">Pea Shoots</h3>
+              <span class="font-bold text-[#003629]">₹99</span>
+            </div>
+
+            <p class="text-sm text-[#404945] mt-2">
+              Tender shoots with a fresh pea flavor.
+            </p>
+
+            <button
+              onclick="addToCart('Pea Shoots',99)"
+              class="w-full mt-5 bg-[#003629] text-white py-3 rounded-full font-semibold"
+            >
+              Add to Cart
+            </button>
+
+          </div>
+
+
+          <!-- MUSTARD -->
+
+          <div class="bg-[#f5f3ef] p-4 rounded-2xl">
+
+            <div
+              class="product-image h-64 rounded-xl bg-gradient-to-br from-[#dde6d3] to-[#f5f3ef] flex items-center justify-center"
+            >
+              <span class="material-symbols-outlined text-7xl text-[#003629]">
+                grass
+              </span>
+            </div>
+
+            <div class="flex justify-between mt-5">
+              <h3 class="text-xl font-bold">Mustard Microgreens</h3>
+              <span class="font-bold text-[#003629]">₹89</span>
+            </div>
+
+            <p class="text-sm text-[#404945] mt-2">
+              Mildly spicy and full of freshness.
+            </p>
+
+            <button
+              onclick="addToCart('Mustard Microgreens',89)"
+              class="w-full mt-5 bg-[#003629] text-white py-3 rounded-full font-semibold"
+            >
+              Add to Cart
+            </button>
+
+          </div>
+
+
+          <!-- MIXED -->
+
+          <div class="bg-[#f5f3ef] p-4 rounded-2xl">
+
+            <div
+              class="product-image h-64 rounded-xl"
+              style="background-image:url('https://lh3.googleusercontent.com/aida-public/AB6AXuBjCM4CSuwRmc65Ji7Rb5SkqJ7vBCs117k-gWjvI7uVOjqapM1mJTzAdbw7m0RMPbGCQxv9ZaJACZ9M9DfI_UtOnooBc_hgSC0v4Mg1Z7TvC_Ti2rVOhbFsQsWISIxnGwAXGNZ0W-cUTuODk8yIkCPHhcsNzBJ5efNuwxeIh6ogm6jC4TLxbKu2GlSNvA3Kq2f9mAn1Oz0JrphY5aJoEYMltMu9A2gBtyhWypUGy5P7EuT1tbVk7IJK')"
+            ></div>
+
+            <div class="flex justify-between mt-5">
+              <h3 class="text-xl font-bold">Mixed Microgreens</h3>
+              <span class="font-bold text-[#003629]">₹119</span>
+            </div>
+
+            <p class="text-sm text-[#404945] mt-2">
+              A colourful blend of fresh microgreens.
+            </p>
+
+            <button
+              onclick="addToCart('Mixed Microgreens',119)"
+              class="w-full mt-5 bg-[#003629] text-white py-3 rounded-full font-semibold"
+            >
+              Add to Cart
+            </button>
+
+          </div>
+
+        </div>
+      </div>
+
+    </section>
+        <!-- ================= WHY MICROGREENS ================= -->
+
+    <section id="page-why" class="page">
+
+      <div class="max-w-7xl mx-auto px-6 py-20">
+
+        <span class="text-sm font-bold uppercase tracking-wider text-[#003629]">
+          Nutritional Science
+        </span>
+
+        <h1 class="text-5xl font-bold text-[#003629] mt-2">
+          Why Microgreens?
+        </h1>
+
+        <p class="text-lg text-[#404945] max-w-2xl mt-5 leading-relaxed">
+          Microgreens are young edible plants packed with flavour,
+          freshness and important nutrients.
+        </p>
+
+
+        <div class="grid md:grid-cols-3 gap-6 mt-12">
+
+          <div class="bg-[#f5f3ef] p-8 rounded-2xl">
+            <span class="material-symbols-outlined text-5xl text-[#003629]">
+              bolt
+            </span>
+
+            <h3 class="text-2xl font-bold mt-5">
+              Nutrient Rich
+            </h3>
+
+            <p class="text-[#404945] mt-3 leading-relaxed">
+              Fresh microgreens are a simple way to add more nutrients and
+              flavour to everyday meals.
+            </p>
+          </div>
+
+
+          <div class="bg-[#f5f3ef] p-8 rounded-2xl">
+            <span class="material-symbols-outlined text-5xl text-[#003629]">
+              water_drop
+            </span>
+
+            <h3 class="text-2xl font-bold mt-5">
+              Freshly Grown
+            </h3>
+
+            <p class="text-[#404945] mt-3 leading-relaxed">
+              Our greens are carefully grown and harvested fresh for better
+              taste and quality.
+            </p>
+          </div>
+
+
+          <div class="bg-[#f5f3ef] p-8 rounded-2xl">
+            <span class="material-symbols-outlined text-5xl text-[#003629]">
+              spa
+            </span>
+
+            <h3 class="text-2xl font-bold mt-5">
+              Easy to Add
+            </h3>
+
+            <p class="text-[#404945] mt-3 leading-relaxed">
+              Add them to salads, sandwiches, wraps, soups, smoothies and
+              everyday dishes.
+            </p>
+          </div>
+
+        </div>
+      </div>
+
+    </section>
+
+
+    <!-- ================= SUBSCRIPTIONS ================= -->
+
+    <section id="page-subscriptions" class="page">
+
+      <div class="max-w-7xl mx-auto px-6 py-20">
+
+        <div class="text-center max-w-2xl mx-auto">
+
+          <span class="text-sm font-bold uppercase tracking-wider text-[#003629]">
+            Regular Fresh Delivery
+          </span>
+
+          <h1 class="text-5xl font-bold text-[#003629] mt-2">
+            Fresh Greens on Autopilot
+          </h1>
+
+          <p class="text-lg text-[#404945] mt-5">
+            Choose a plan and get your favourite microgreens delivered
+            regularly.
+          </p>
+
+        </div>
+
+
+        <div class="grid md:grid-cols-3 gap-6 mt-14">
+
+
+          <!-- STARTER -->
+
+          <div class="bg-[#f5f3ef] rounded-2xl p-8">
+
+            <span class="text-sm uppercase tracking-wider font-bold text-[#404945]">
+              Starter
+            </span>
+
+            <h3 class="text-2xl font-bold mt-3">
+              Starter Plan
+            </h3>
+
+            <div class="text-4xl font-bold text-[#003629] mt-5">
+              ₹299
+              <span class="text-sm font-normal text-[#404945]">
+                / week
+              </span>
+            </div>
+
+            <p class="text-[#404945] mt-4">
+              Perfect for trying different microgreens every week.
+            </p>
+
+            <ul class="mt-6 space-y-3 text-sm">
+              <li>✓ 2 fresh boxes</li>
+              <li>✓ Weekly delivery</li>
+              <li>✓ Fresh harvest</li>
+            </ul>
+
+            <button
+              onclick="addToCart('Starter Subscription',299)"
+              class="mt-8 w-full bg-[#003629] text-white py-3 rounded-full font-semibold"
+            >
+              Choose Plan
+            </button>
+
+          </div>
+
+
+          <!-- HEALTHY -->
+
+          <div class="bg-[#003629] text-white rounded-2xl p-8 relative">
+
+            <span class="absolute top-5 right-5 bg-white text-[#003629] text-xs px-3 py-1 rounded-full font-bold">
+              Most Popular
+            </span>
+
+            <span class="text-sm uppercase tracking-wider font-bold">
+              Healthy
+            </span>
+
+            <h3 class="text-2xl font-bold mt-3">
+              Healthy Plan
+            </h3>
+
+            <div class="text-4xl font-bold mt-5">
+              ₹499
+              <span class="text-sm font-normal text-white/70">
+                / week
+              </span>
+            </div>
+
+            <p class="text-white/80 mt-4">
+              A balanced weekly subscription for regular microgreen lovers.
+            </p>
+
+            <ul class="mt-6 space-y-3 text-sm">
+              <li>✓ 4 fresh boxes</li>
+              <li>✓ Weekly delivery</li>
+              <li>✓ Variety selection</li>
+            </ul>
+
+            <button
+              onclick="addToCart('Healthy Subscription',499)"
+              class="mt-8 w-full bg-white text-[#003629] py-3 rounded-full font-semibold"
+            >
+              Choose Plan
+            </button>
+
+          </div>
+
+
+          <!-- FAMILY -->
+
+          <div class="bg-[#f5f3ef] rounded-2xl p-8">
+
+            <span class="text-sm uppercase tracking-wider font-bold text-[#404945]">
+              Family
+            </span>
+
+            <h3 class="text-2xl font-bold mt-3">
+              Family Plan
+            </h3>
+
+            <div class="text-4xl font-bold text-[#003629] mt-5">
+              ₹699
+              <span class="text-sm font-normal text-[#404945]">
+                / week
+              </span>
+            </div>
+
+            <p class="text-[#404945] mt-4">
+              More greens for families who want fresh produce every week.
+            </p>
+
+            <ul class="mt-6 space-y-3 text-sm">
+              <li>✓ 6 fresh boxes</li>
+              <li>✓ Weekly delivery</li>
+              <li>✓ Family quantity</li>
+            </ul>
+
+            <button
+              onclick="addToCart('Family Subscription',699)"
+              class="mt-8 w-full bg-[#003629] text-white py-3 rounded-full font-semibold"
+            >
+              Choose Plan
+            </button>
+
+          </div>
+
+        </div>
+      </div>
+
+    </section>
+
+
+    <!-- ================= ABOUT ================= -->
+
+    <section id="page-about" class="page">
+
+      <div class="max-w-7xl mx-auto px-6 py-20">
+
+        <div class="grid lg:grid-cols-2 gap-12 items-center">
+
+          <div>
+
+            <span class="text-sm uppercase tracking-wider font-bold text-[#003629]">
+              Our Story
+            </span>
+
+            <h1 class="text-5xl font-bold text-[#003629] mt-3">
+              Fresh Greens.
+              <br />
+              Better Living.
+            </h1>
+
+            <p class="text-lg text-[#404945] mt-6 leading-relaxed">
+              GreenBite is built around one simple idea:
+              making fresh microgreens easy to access and easy to add
+              to everyday meals.
+            </p>
+
+            <p class="text-[#404945] mt-4 leading-relaxed">
+              We focus on careful growing, fresh harvesting and convenient
+              delivery so customers can enjoy quality greens at home.
+            </p>
+
+            <div class="grid grid-cols-2 gap-4 mt-8">
+
+              <div class="bg-[#f5f3ef] p-5 rounded-xl">
+                <div class="text-3xl font-bold text-[#003629]">
+                  100%
+                </div>
+                <p class="text-sm text-[#404945] mt-1">
+                  Fresh Focus
+                </p>
+              </div>
+
+              <div class="bg-[#f5f3ef] p-5 rounded-xl">
+                <div class="text-3xl font-bold text-[#003629]">
+                  Daily
+                </div>
+                <p class="text-sm text-[#404945] mt-1">
+                  Harvest
+                </p>
+              </div>
+
+            </div>
+
+          </div>
+
+
+          <div
+            class="h-[450px] rounded-3xl bg-cover bg-center"
+            style="background-image:url('https://lh3.googleusercontent.com/aida-public/AB6AXuBSwOL4DTHwGQWmGO8FqH2wFK9ULVWlTL6697Tujgzn5Ih5LTmbtM-ZhFE3P4bOW-LrsmgiF-rrhY8HumecrgxhD9tFeHCm-38vU4PwNr91COUvLWO7bxw9hBU3ZzCdAouh_Bw0zvHNieNwaV3AYZeYdH9DHGp4VpX7X8XV0pLFdwuIcATRIiuxdSv5an_iorPNcYtWJ6dPYEBtz509m5ZFQoz62zlDok55PTAdBip8BwQkbnrv6P9u')"
+          ></div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- ================= CONTACT ================= -->
+
+    <section id="page-contact" class="page">
+
+      <div class="max-w-4xl mx-auto px-6 py-20">
+
+        <div class="text-center mb-12">
+
+          <span class="text-sm uppercase tracking-wider font-bold text-[#003629]">
+            Get in Touch
+          </span>
+
+          <h1 class="text-5xl font-bold text-[#003629] mt-3">
+            We'd Love to Hear From You
+          </h1>
+
+          <p class="text-lg text-[#404945] mt-5">
+            Have a question about our microgreens or subscriptions?
+            Send us a message.
+          </p>
+
+        </div>
+
+
+        <form
+          onsubmit="sendMessage(event)"
+          class="bg-[#f5f3ef] p-8 md:p-10 rounded-3xl space-y-6"
+        >
+
+          <div>
+            <label class="block font-semibold mb-2">
+              Your Name
+            </label>
+
+            <input
+              type="text"
+              required
+              class="w-full bg-white px-5 py-4 rounded-xl outline-none focus:ring-2 focus:ring-[#003629]"
+              placeholder="Enter your name"
+            />
+          </div>
+
+
+          <div>
+            <label class="block font-semibold mb-2">
+              Email Address
+            </label>
+
+            <input
+              type="email"
+              required
+              class="w-full bg-white px-5 py-4 rounded-xl outline-none focus:ring-2 focus:ring-[#003629]"
+              placeholder="Enter your email"
+            />
+          </div>
+
+
+          <div>
+            <label class="block font-semibold mb-2">
+              Message
+            </label>
+
+            <textarea
+              required
+              rows="5"
+              class="w-full bg-white px-5 py-4 rounded-xl outline-none focus:ring-2 focus:ring-[#003629]"
+              placeholder="Write your message..."
+            ></textarea>
+          </div>
+
+
+          <button
+            type="submit"
+            class="w-full bg-[#003629] text-white py-4 rounded-full font-semibold"
+          >
+            Send Message
+          </button>
+
+        </form>
+
+      </div>
+
+    </section>
+
+
+    <!-- ================= PRODUCT DETAILS ================= -->
+
+    <section id="page-product" class="page">
+
+      <div class="max-w-7xl mx-auto px-6 py-16">
+
+        <button
+          onclick="showPage('shop')"
+          class="flex items-center gap-2 text-[#003629] font-semibold mb-10"
+        >
+          <span class="material-symbols-outlined">
+            arrow_back
+          </span>
+          Back to Shop
+        </button>
+
+
+        <div class="grid lg:grid-cols-2 gap-12">
+
+          <div
+            class="product-image h-[500px] rounded-3xl"
+            style="background-image:url('https://lh3.googleusercontent.com/aida-public/AB6AXuDJaKtpodyo_Yg4kxYpKoKxiOTbEHl03GrGRlfaZRWClFB5Emja9cp0zvUkS0F2hdNb1kTUdS3wyUV4HsuATJ95GwLPLeFYEmJBw7ZWb_5t9YNYWzxKGHZvLxEUpVwRpMRug8U6B172uq6haLEPHH8d-tKu2JE1xZxCdeeAXTUCOlATB0PlGzRqt3_RyYZcHLlnn7bt1Uk0fj8BT-Mlx8aeSDcRxJT1v3Rvc7iz0ddIKxsEJ8MbRUUt')"
+          ></div>
+
+
+          <div>
+
+            <span class="text-sm uppercase tracking-wider font-bold text-[#003629]">
+              Organic Living Greens
+            </span>
+
+            <h1 class="text-5xl font-bold mt-3 text-[#003629]">
+              Broccoli Microgreens
+            </h1>
+
+            <div class="text-3xl font-bold mt-6 text-[#003629]">
+              ₹99
+              <span class="text-sm font-normal text-[#404945]">
+                / 50g
+              </span>
+            </div>
+
+            <p class="text-lg text-[#404945] mt-6 leading-relaxed">
+              Fresh broccoli microgreens with a mild earthy flavour.
+              Perfect for salads, sandwiches, soups, smoothies and more.
+            </p>
+
+
+            <div class="mt-8 space-y-4">
+
+              <div class="flex items-center gap-3">
+                <span class="material-symbols-outlined text-[#003629]">
+                  eco
+                </span>
+                Freshly Harvested
+              </div>
+
+              <div class="flex items-center gap-3">
+                <span class="material-symbols-outlined text-[#003629]">
+                  local_shipping
+                </span>
+                Fast Delivery
+              </div>
+
+              <div class="flex items-center gap-3">
+                <span class="material-symbols-outlined text-[#003629]">
+                  verified
+                </span>
+                Quality Checked
+              </div>
+
+            </div>
+
+
+            <div class="flex items-center gap-4 mt-10">
+
+              <div class="flex items-center bg-[#f5f3ef] rounded-full p-1">
+
+                <button
+                  onclick="changeProductQty(-1)"
+                  class="w-10 h-10 rounded-full hover:bg-white"
+                >
+                  -
+                </button>
+
+                <span id="productQty" class="px-5 font-semibold">
+                  1
+                </span>
+
+                <button
+                  onclick="changeProductQty(1)"
+                  class="w-10 h-10 rounded-full hover:bg-white"
+                >
+                  +
+                </button>
+
+              </div>
+
+
+              <button
+                onclick="addProductToCart()"
+                class="flex-1 bg-[#003629] text-white py-4 rounded-full font-semibold"
+              >
+                Add to Cart — ₹<span id="productTotal">99</span>
+              </button>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- ================= CART ================= -->
+
+    <section id="page-cart" class="page">
+
+      <div class="max-w-7xl mx-auto px-6 py-16">
+
+        <h1 class="text-5xl font-bold text-[#003629] mb-12">
+          Your Cart
+        </h1>
+
+
+        <div id="emptyCart" class="hidden text-center py-20">
+
+          <span class="material-symbols-outlined text-7xl text-[#003629]">
+            shopping_bag
+          </span>
+
+          <h2 class="text-3xl font-bold mt-5">
+            Your cart is empty
+          </h2>
+
+          <p class="text-[#404945] mt-3">
+            Add some fresh microgreens to get started.
+          </p>
+
+          <button
+            onclick="showPage('shop')"
+            class="mt-7 bg-[#003629] text-white px-8 py-3 rounded-full font-semibold"
+          >
+            Browse Shop
+          </button>
+
+        </div>
+
+
+        <div id="cartContent" class="grid lg:grid-cols-3 gap-8">
+
+          <div
+            id="cartItems"
+            class="lg:col-span-2 space-y-4"
+          ></div>
+
+
+          <div class="bg-[#f5f3ef] rounded-2xl p-8 h-fit">
+
+            <h3 class="text-2xl font-bold">
+              Order Summary
+            </h3>
+
+            <div class="flex justify-between mt-8 text-[#404945]">
+              <span>Subtotal</span>
+              <span id="cartSubtotal">₹0</span>
+            </div>
+
+            <div class="flex justify-between mt-4 text-[#404945]">
+              <span>Delivery</span>
+              <span id="deliveryFee">₹49</span>
+            </div>
+
+            <div class="border-t border-[#c0c9c3] mt-6 pt-6 flex justify-between text-xl font-bold">
+              <span>Total</span>
+              <span id="cartTotal" class="text-[#003629]">
+                ₹0
+              </span>
+            </div>
+
+            <button
+              onclick="showPage('checkout')"
+              class="w-full mt-8 bg-[#003629] text-white py-4 rounded-full font-semibold"
+            >
+              Proceed to Checkout
+            </button>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- ================= CHECKOUT ================= -->
+
+    <section id="page-checkout" class="page">
+
+      <div class="max-w-3xl mx-auto px-6 py-16">
+
+        <h1 class="text-5xl font-bold text-[#003629]">
+          Checkout
+        </h1>
+
+        <p class="text-[#404945] mt-4">
+          Enter your details to place your order.
+        </p>
+
+
+        <form
+          onsubmit="placeOrder(event)"
+          class="mt-10 bg-[#f5f3ef] rounded-3xl p-8 space-y-6"
+        >
+
+          <div>
+            <label class="block font-semibold mb-2">
+              Full Name
+            </label>
+
+            <input
+              required
+              type="text"
+              class="w-full bg-white px-5 py-4 rounded-xl outline-none"
+              placeholder="Your full name"
+            />
+          </div>
+
+
+          <div>
+            <label class="block font-semibold mb-2">
+              Phone Number
+            </label>
+
+            <input
+              required
+              type="tel"
+              class="w-full bg-white px-5 py-4 rounded-xl outline-none"
+              placeholder="Your phone number"
+            />
+          </div>
+
+
+          <div>
+            <label class="block font-semibold mb-2">
+              Delivery Address
+            </label>
+
+            <textarea
+              required
+              rows="4"
+              class="w-full bg-white px-5 py-4 rounded-xl outline-none"
+              placeholder="Enter delivery address"
+            ></textarea>
+          </div>
+
+
+          <div>
+            <label class="block font-semibold mb-2">
+              Payment Method
+            </label>
+
+            <select
+              class="w-full bg-white px-5 py-4 rounded-xl outline-none"
+            >
+              <option>Cash on Delivery</option>
+              <option>UPI</option>
+              <option>Credit / Debit Card</option>
+            </select>
+          </div>
+
+
+          <button
+            type="submit"
+            class="w-full bg-[#003629] text-white py-4 rounded-full font-semibold"
+          >
+            Place Order
+          </button>
+
+        </form>
+
+      </div>
+
+    </section>
+
+
+    <!-- ================= ORDER CONFIRMATION ================= -->
+
+    <section id="page-confirmation" class="page">
+
+      <div class="max-w-3xl mx-auto px-6 py-24 text-center">
+
+        <div class="w-20 h-20 bg-[#dde6d3] rounded-full flex items-center justify-center mx-auto">
+          <span class="material-symbols-outlined text-5xl text-[#003629]">
+            check
+          </span>
+        </div>
+
+        <h1 class="text-5xl font-bold text-[#003629] mt-8">
+          Order Confirmed!
+        </h1>
+
+        <p class="text-lg text-[#404945] mt-5">
+          Thank you for choosing GreenBite.
+          Your fresh microgreens are being prepared.
+        </p>
+
+        <div class="bg-[#f5f3ef] rounded-2xl p-8 mt-10 text-left">
+
+          <div class="flex justify-between">
+            <span class="text-[#404945]">Order Number</span>
+            <strong>#GB2026-001</strong>
+          </div>
+
+          <div class="flex justify-between mt-5">
+            <span class="text-[#404945]">Delivery</span>
+            <strong>Tomorrow</strong>
+          </div>
+
+          <div class="flex justify-between mt-5">
+            <span class="text-[#404945]">Status</span>
+            <strong class="text-[#003629]">Confirmed</strong>
+          </div>
+
+        </div>
+
+        <button
+          onclick="showPage('shop')"
+          class="mt-8 bg-[#003629] text-white px-8 py-4 rounded-full font-semibold"
+        >
+          Continue Shopping
+        </button>
+
+      </div>
+
+    </section>
+
+
+  </main>
+    <!-- ================= FOOTER ================= -->
+
+  <footer class="bg-[#003629] text-white mt-20">
+
+    <div class="max-w-7xl mx-auto px-6 py-14">
+
+      <div class="grid md:grid-cols-4 gap-10">
+
+        <div>
+
+          <h2 class="text-2xl font-bold">
+            GreenBite 🌱
+          </h2>
+
+          <p class="text-white/70 mt-4 leading-relaxed">
+            Small Greens. Big Nutrition.
+            Fresh microgreens delivered with care.
+          </p>
+
+        </div>
+
+
+        <div>
+
+          <h3 class="font-bold mb-4">
+            Quick Links
+          </h3>
+
+          <div class="space-y-3 text-white/70">
+
+            <button onclick="showPage('home')" class="block hover:text-white">
+              Home
+            </button>
+
+            <button onclick="showPage('shop')" class="block hover:text-white">
+              Shop
+            </button>
+
+            <button onclick="showPage('subscriptions')" class="block hover:text-white">
+              Subscriptions
+            </button>
+
+          </div>
+
+        </div>
+
+
+        <div>
+
+          <h3 class="font-bold mb-4">
+            Information
+          </h3>
+
+          <div class="space-y-3 text-white/70">
+
+            <button onclick="showPage('why')" class="block hover:text-white">
+              Why Microgreens
+            </button>
+
+            <button onclick="showPage('about')" class="block hover:text-white">
+              About Us
+            </button>
+
+            <button onclick="showPage('contact')" class="block hover:text-white">
+              Contact
+            </button>
+
+          </div>
+
+        </div>
+
+
+        <div>
+
+          <h3 class="font-bold mb-4">
+            Contact
+          </h3>
+
+          <div class="space-y-3 text-white/70">
+
+            <p>📍 Salem, Tamil Nadu</p>
+
+            <p>📞 +91 98765 43210</p>
+
+            <p>✉️ hello@greenbite.com</p>
+
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <div class="border-t border-white/20 mt-12 pt-6 text-center text-white/60 text-sm">
+
+        © 2026 GreenBite. All rights reserved.
+
+      </div>
+
+    </div>
+
+  </footer>
+
+
+  <!-- ================= JAVASCRIPT ================= -->
+
+  <script>
+
+    let cart = [];
+
+    let productQty = 1;
+
+
+    /* ================= PAGE NAVIGATION ================= */
+
+    function showPage(page) {
+
+      document.querySelectorAll(".page").forEach(function(section) {
+        section.classList.remove("active");
+      });
+
+      const selectedPage = document.getElementById("page-" + page);
+
+      if (selectedPage) {
+        selectedPage.classList.add("active");
+      }
+
+      document.querySelectorAll(".nav-btn").forEach(function(button) {
+
+        button.classList.remove(
+          "bg-[#003629]",
+          "text-white"
+        );
+
+        if (button.dataset.nav === page) {
+
+          button.classList.add(
+            "bg-[#003629]",
+            "text-white"
+          );
+
+        }
+
+      });
+
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+      });
+
+      if (page === "cart") {
+        renderCart();
+      }
+
+    }
+
+
+    /* ================= CART BADGE ================= */
+
+    function updateCartBadge() {
+
+      const badge = document.getElementById("cartBadge");
+
+      const count = cart.reduce(function(total, item) {
+        return total + item.qty;
+      }, 0);
+
+      badge.textContent = count;
+
+    }
+
+
+    /* ================= ADD TO CART ================= */
+
+    function addToCart(name, price) {
+
+      const existingItem = cart.find(function(item) {
+        return item.name === name;
+      });
+
+
+      if (existingItem) {
+
+        existingItem.qty += 1;
+
+      } else {
+
+        cart.push({
+          name: name,
+          price: price,
+          qty: 1
+        });
+
+      }
+
+
+      updateCartBadge();
+
+      showPage("cart");
+
+    }
+
+
+    /* ================= PRODUCT QUANTITY ================= */
+
+    function changeProductQty(change) {
+
+      productQty += change;
+
+      if (productQty < 1) {
+        productQty = 1;
+      }
+
+      document.getElementById("productQty").textContent = productQty;
+
+      document.getElementById("productTotal").textContent =
+        (99 * productQty).toFixed(0);
+
+    }
+
+
+    /* ================= PRODUCT ADD ================= */
+
+    function addProductToCart() {
+
+      const existingItem = cart.find(function(item) {
+        return item.name === "Broccoli Microgreens";
+      });
+
+
+      if (existingItem) {
+
+        existingItem.qty += productQty;
+
+      } else {
+
+        cart.push({
+          name: "Broccoli Microgreens",
+          price: 99,
+          qty: productQty
+        });
+
+      }
+
+
+      productQty = 1;
+
+      document.getElementById("productQty").textContent = 1;
+
+      document.getElementById("productTotal").textContent = "99";
+
+
+      updateCartBadge();
+
+      showPage("cart");
+
+    }
+
+
+    /* ================= REMOVE ITEM ================= */
+
+    function removeFromCart(index) {
+
+      cart.splice(index, 1);
+
+      updateCartBadge();
+
+      renderCart();
+
+    }
+
+
+    /* ================= CHANGE CART QUANTITY ================= */
+
+    function changeCartQty(index, change) {
+
+      cart[index].qty += change;
+
+      if (cart[index].qty <= 0) {
+
+        cart.splice(index, 1);
+
+      }
+
+      updateCartBadge();
+
+      renderCart();
+
+    }
+
+
+    /* ================= RENDER CART ================= */
+
+    function renderCart() {
+
+      const cartItems = document.getElementById("cartItems");
+
+      const emptyCart = document.getElementById("emptyCart");
+
+      const cartContent = document.getElementById("cartContent");
+
+
+      if (cart.length === 0) {
+
+        emptyCart.classList.remove("hidden");
+
+        cartContent.classList.add("hidden");
+
+        return;
+
+      }
+
+
+      emptyCart.classList.add("hidden");
+
+      cartContent.classList.remove("hidden");
+
+
+      cartItems.innerHTML = "";
+
+
+      let subtotal = 0;
+
+
+      cart.forEach(function(item, index) {
+
+        const itemTotal = item.price * item.qty;
+
+        subtotal += itemTotal;
+
+
+        const itemDiv = document.createElement("div");
+
+
+        itemDiv.className =
+          "bg-[#f5f3ef] rounded-2xl p-5 flex flex-col sm:flex-row items-center justify-between gap-5";
+
+
+        itemDiv.innerHTML = `
+
+          <div class="flex items-center gap-4 w-full">
+
+            <div
+              class="w-20 h-20 rounded-xl bg-[#dde6d3] flex items-center justify-center flex-shrink-0"
+            >
+              <span class="material-symbols-outlined text-4xl text-[#003629]">
+                grass
+              </span>
+            </div>
+
+            <div>
+
+              <h3 class="font-bold text-lg">
+                ${item.name}
+              </h3>
+
+              <p class="text-sm text-[#404945] mt-1">
+                ₹${item.price} each
+              </p>
+
+            </div>
+
+          </div>
+
+
+          <div class="flex items-center gap-4">
+
+            <div class="flex items-center bg-white rounded-full p-1">
+
+              <button
+                onclick="changeCartQty(${index}, -1)"
+                class="w-9 h-9 rounded-full hover:bg-[#f5f3ef]"
+              >
+                -
+              </button>
+
+              <span class="px-4 font-semibold">
+                ${item.qty}
+              </span>
+
+              <button
+                onclick="changeCartQty(${index}, 1)"
+                class="w-9 h-9 rounded-full hover:bg-[#f5f3ef]"
+              >
+                +
+              </button>
+
+            </div>
+
+
+            <strong class="text-[#003629] min-w-[75px] text-right">
+              ₹${itemTotal}
+            </strong>
+
+
+            <button
+              onclick="removeFromCart(${index})"
+              class="text-red-500 hover:text-red-700"
+            >
+              <span class="material-symbols-outlined">
+                delete
+              </span>
+            </button>
+
+          </div>
+
+        `;
+
+
+        cartItems.appendChild(itemDiv);
+
+      });
+
+
+      const delivery =
+        subtotal === 0
+          ? 0
+          : subtotal >= 500
+            ? 0
+            : 49;
+
+
+      const total = subtotal + delivery;
+
+
+      document.getElementById("cartSubtotal").textContent =
+        "₹" + subtotal;
+
+
+      document.getElementById("deliveryFee").textContent =
+        delivery === 0
+          ? "Free"
+          : "₹" + delivery;
+
+
+      document.getElementById("cartTotal").textContent =
+        "₹" + total;
+
+    }
+
+
+    /* ================= CHECKOUT ================= */
+
+    function placeOrder(event) {
+
+      event.preventDefault();
+
+      if (cart.length === 0) {
+
+        alert("Your cart is empty.");
+
+        showPage("shop");
+
+        return;
+
+      }
+
+
+      cart = [];
+
+      updateCartBadge();
+
+      showPage("confirmation");
+
+    }
+
+
+    /* ================= CONTACT ================= */
+
+    function sendMessage(event) {
+
+      event.preventDefault();
+
+      alert(
+        "Thank you! Your message has been sent successfully."
+      );
+
+      event.target.reset();
+
+    }
+
+
+    /* ================= START ================= */
+
+    updateCartBadge();
+
+    showPage("home");
+
+  </script>
+
+</body>
+</html>
